@@ -24,8 +24,15 @@ const updateAccessesPost = async (req, res) => {
 
     const postUpdated = await postRef.get();
 
+    const commentsSnapshot = await postRef.collection("comments").orderBy("createdAt", "asc").get();
+    const comments = commentsSnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }))
+
     res.status(200).json({
-      posts: { ...postUpdated.data(), id: postId }
+      posts: { ...postUpdated.data(), id: postId },
+      comments: comments
     });
   } catch (error) {
     console.error(error);

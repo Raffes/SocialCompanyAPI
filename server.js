@@ -10,6 +10,7 @@ const createPost = require("./endpoints/photo_post.js");
 const listPostsById = require("./endpoints/photo_get.js");
 const updateAccessesPost = require("./endpoints/accesses_patch.js");
 const deletePost = require("./endpoints/photo_delete.js");
+const createComment = require("./endpoints/comment_post.js");
 
 const expressApp = express();
 expressApp.use(cors());
@@ -43,6 +44,9 @@ expressApp.get("/api/listPostsById", listPostsById);
 
 // Endpoint de atualizar acessos do post
 expressApp.patch("/api/updateAccessesPost", updateAccessesPost);
+
+// Endpoint de criar comentário no post
+expressApp.post("/api/createComment", createComment);
 
 expressApp.listen(3000, () => {
     console.log("Servidor rodando na porta 3000");
