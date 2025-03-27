@@ -52,7 +52,7 @@ const uploadImage = async (file) => {
           if (error) {
             reject(error);
           } else {
-            resolve(result.secure_url);
+            resolve({id: result.public_id, src: result.secure_url});
           }
         }
       );
@@ -86,7 +86,7 @@ const createPost = async (req, res) => {
         userId: user.id,
         author: user.username,
         description: description,
-        imageUrl: imageUrl,
+        imageInfo: imageUrl,
         acessos: 0,
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
       });

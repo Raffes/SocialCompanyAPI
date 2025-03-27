@@ -25,7 +25,7 @@ const updateAccessesPost = async (req, res) => {
     const postUpdated = await postRef.get();
 
     res.status(200).json({
-      posts: postUpdated.data()
+      posts: { ...postUpdated.data(), id: postId }
     });
   } catch (error) {
     console.error(error);

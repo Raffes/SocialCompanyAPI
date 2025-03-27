@@ -9,6 +9,7 @@ const getUser = require("./endpoints/user_get.js");
 const createPost = require("./endpoints/photo_post.js");
 const listPostsById = require("./endpoints/photo_get.js");
 const updateAccessesPost = require("./endpoints/accesses_patch.js");
+const deletePost = require("./endpoints/photo_delete.js");
 
 const expressApp = express();
 expressApp.use(cors());
@@ -33,6 +34,9 @@ expressApp.get("/api/getUser", getUser);
 
 // Endpoint de criar post
 expressApp.post("/api/createPost", upload.single("imageFile"), createPost);
+
+// Endpoint de exluir post
+expressApp.delete("/api/deletePost", deletePost);
 
 // Endpoint de pegar post do usuário
 expressApp.get("/api/listPostsById", listPostsById);
